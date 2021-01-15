@@ -9,7 +9,7 @@ from pathlib import Path
 VIEWS_THRESHOLD = 1
 OVERLAP_THRESHOLD = 50
 
-@functools.cache
+@functools.lru_cache(None)
 def LoadStreamerViewers(streamer):
     v = pd.read_csv(f"../DataCollection/data/{streamer}.csv", names=['username','n'])
     v = v[v['n'] > VIEWS_THRESHOLD]['username']
@@ -20,7 +20,6 @@ def CreateOverlapDict(streamers):
     overlaps = {}
     combo = combinations(streamers,2)
 
-    cache = {} # caching last set to speedup the process
     print(f"Combining {len(streamers)} streamers...")
     for s1,s2 in combo:
         v1 = LoadStreamerViewers(s1)
