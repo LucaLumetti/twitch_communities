@@ -6,8 +6,8 @@ from itertools import combinations
 import functools
 from pathlib import Path
 
-VIEWS_THRESHOLD = 1
-OVERLAP_THRESHOLD = 50
+VIEWS_THRESHOLD = 0
+OVERLAP_THRESHOLD = 5
 
 @functools.lru_cache(None)
 def LoadStreamerViewers(streamer):
